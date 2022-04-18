@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\ContactController;
 
 /*
@@ -19,9 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::middleware(['auth:sanctum'])->group(function () {
 
-Route::resource('contacts', ContactController::class)->middleware('auth');
+    Route::resource('contacts', ContactController::class);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+});

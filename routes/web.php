@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
+    Auth::routes();
+
     Route::resource('contacts', ContactController::class);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

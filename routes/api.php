@@ -19,6 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/contacts', function(Request $request) {
+Route::middleware('auth:sanctum')->get('/contacts', function (Request $request) {
     return Contact::all();
 });
+
+
+

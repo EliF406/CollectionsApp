@@ -19,14 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 Route::resource('contacts', ContactController::class)->middleware('auth');
 
-Route::middleware(['auth'])->group(function () {
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Auth::routes();
-
-    
-
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-});

@@ -19,15 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
 
-Route::middleware(['first', 'second'])->group(function () {
+Route::resource('contacts', ContactController::class)->middleware('auth');
 
-    Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
-    Route::resource('contacts', ContactController::class);
-
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-});
-
-require __DIR__.'/auth.php';

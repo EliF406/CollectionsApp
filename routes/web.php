@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['first', 'second'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::resource('contacts', ContactController::class)->middleware('auth');
 
